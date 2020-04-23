@@ -4,7 +4,7 @@ Tian-yuan-hao-jie
 ## Introduction
 Differentially expressed genes analysis based on TCGA-LIHC(liver cancer) data. Project on bioinformatics course.
 ## Usage of files/folders
-preprocess.py: retrive the original FPKM matrix and separate it to tumor matrix and normal matrix
+preprocess.py: retrieve the original FPKM matrix and separate it to tumor matrix and normal matrix
 
 
 diff_gene_filter.py: filter genes according to pvalue and fold change
