@@ -35,25 +35,69 @@ reduced_normal=pca.fit_transform(normal_matrix)
 # plt.plot(range(2,11),silhouettescore,linewidth=1.5,linestyle='-')
 # plt.show()
 
-clf=KMeans(n_clusters=2).fit(reduced_tumor)
+clf=KMeans(n_clusters=8).fit(reduced_tumor)
 # centers = clf.cluster_centers_
 # plt.scatter(reduced_tumor[:,0],reduced_tumor[:,1],c='r',marker='X',label='tumor')
 # plt.scatter(centers[:,0],centers[:,1],c='b',marker='.',label='centers')
 # plt.show()
 
-tumor_main_cluster=[]
+cluster_1=[]
+cluster_2=[]
+cluster_3=[]
+cluster_4=[]
+cluster_5=[]
+cluster_6=[]
+cluster_7=[]
+cluster_8=[]
 for i in range(len(clf.labels_)):
     if clf.labels_[i]==0:
-        tumor_main_cluster.append(i)
-print(len(tumor_main_cluster))
+        cluster_1.append(i)
+    elif clf.labels_[i]==1:
+        cluster_2.append(i)
+    elif clf.labels_[i]==2:
+        cluster_3.append(i)
+    elif clf.labels_[i]==3:
+        cluster_4.append(i)    
+    elif clf.labels_[i]==3:
+        cluster_5.append(i)  
+    elif clf.labels_[i]==3:
+        cluster_6.append(i)  
+    elif clf.labels_[i]==3:
+        cluster_7.append(i)  
+    else:
+        cluster_8.append(i)  
+print(len(cluster_1),len(cluster_2),len(cluster_3),len(cluster_4),len(cluster_5),len(cluster_6),len(cluster_7),len(cluster_8))
 
-clf=KMeans(n_clusters=2).fit(reduced_normal)
+clf=KMeans(n_clusters=8).fit(reduced_normal)
 # centers = clf.cluster_centers_
 # plt.scatter(reduced_normal[:,0],reduced_normal[:,1],c='g',marker='X',label='normal')
 # plt.scatter(centers[:,0],centers[:,1],c='r',marker='.',label='centers')
 # plt.show()
-normal_main_cluster=[]
+
+cluster_1=[]
+cluster_2=[]
+cluster_3=[]
+cluster_4=[]
+cluster_5=[]
+cluster_6=[]
+cluster_7=[]
+cluster_8=[]
+
 for i in range(len(clf.labels_)):
     if clf.labels_[i]==0:
-        normal_main_cluster.append(i)
-print(len(normal_main_cluster))
+        cluster_1.append(i)
+    elif clf.labels_[i]==1:
+        cluster_2.append(i)
+    elif clf.labels_[i]==2:
+        cluster_3.append(i)
+    elif clf.labels_[i]==3:
+        cluster_4.append(i)    
+    elif clf.labels_[i]==3:
+        cluster_5.append(i)  
+    elif clf.labels_[i]==3:
+        cluster_6.append(i)  
+    elif clf.labels_[i]==3:
+        cluster_7.append(i)  
+    else:
+        cluster_8.append(i)  
+print(len(cluster_1),len(cluster_2),len(cluster_3),len(cluster_4),len(cluster_5),len(cluster_6),len(cluster_7),len(cluster_8))
