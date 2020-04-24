@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from scipy import stats
 import numpy as np
-fpkm_tumor=pd.read_csv('./data/TCGA-LIHC.htseq_fpkm_tumor.tsv',sep='\t',index_col=0)
-fpkm_normal=pd.read_csv('./data/TCGA-LIHC.htseq_fpkm_normal.tsv',sep='\t',index_col=0)
+fpkm_tumor=pd.read_csv('./data/TCGA-LIHC.htseq_fpkm_tumor_filter.tsv',sep='\t',index_col=0)
+fpkm_normal=pd.read_csv('./data/TCGA-LIHC.htseq_fpkm_normal_filter.tsv',sep='\t',index_col=0)
 tumor_maxtrix=np.array(fpkm_tumor.values)
 normal_matrix=np.array(fpkm_normal.values)
 pca=PCA(n_components=2)
@@ -36,13 +36,24 @@ reduced_normal=pca.fit_transform(normal_matrix)
 # plt.show()
 
 clf=KMeans(n_clusters=2).fit(reduced_tumor)
-centers = clf.cluster_centers_
-plt.scatter(reduced_tumor[:,0],reduced_tumor[:,1],c='r',marker='X',label='tumor')
-plt.scatter(centers[:,0],centers[:,1],c='b',marker='.',label='centers')
-plt.show()
+# centers = clf.cluster_centers_
+# plt.scatter(reduced_tumor[:,0],reduced_tumor[:,1],c='r',marker='X',label='tumor')
+# plt.scatter(centers[:,0],centers[:,1],c='b',marker='.',label='centers')
+# plt.show()
+
+tumor_main_cluster=[]
+for i in range(len(clf.labels_)):
+    if clf.labels_[i]==0:
+        tumor_main_cluster.append(i)
+print(len(tumor_main_cluster))
 
 clf=KMeans(n_clusters=2).fit(reduced_normal)
-centers = clf.cluster_centers_
-plt.scatter(reduced_normal[:,0],reduced_normal[:,1],c='g',marker='X',label='normal')
-plt.scatter(centers[:,0],centers[:,1],c='r',marker='.',label='centers')
-plt.show()
+# centers = clf.cluster_centers_
+# plt.scatter(reduced_normal[:,0],reduced_normal[:,1],c='g',marker='X',label='normal')
+# plt.scatter(centers[:,0],centers[:,1],c='r',marker='.',label='centers')
+# plt.show()
+normal_main_cluster=[]
+for i in range(len(clf.labels_)):
+    if clf.labels_[i]==0:
+        normal_main_cluster.append(i)
+print(len(normal_main_cluster))
